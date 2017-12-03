@@ -72,6 +72,13 @@ public class V_menu extends JFrame {
 		contentPane.add(btnJugarOnline);
 		
 		JButton btnVs = new JButton("1 vs 1 offline");
+		btnVs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				V_uno n = new V_uno();
+				n.setVisible(true);
+				dispose();
+			}
+		});
 		btnVs.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent arg0) {
 			btnVs.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 45));

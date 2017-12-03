@@ -15,6 +15,8 @@ import java.awt.Rectangle;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -88,13 +90,33 @@ public class V_registrarse extends JFrame {
 		btnRegistrarse.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 40));
 		btnRegistrarse.setBackground(new Color(255, 140, 0));
 		btnRegistrarse.setBounds(570, 501, 274, 50);
+		btnRegistrarse.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent arg0) {
+			btnRegistrarse.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 50));
+			}
+			public void mouseExited(MouseEvent e) {
+			btnRegistrarse.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 40));
+			}
+		});
 		getContentPane().add(btnRegistrarse);
 		
 		JButton btnMostrarContrasea = new JButton("Mostrar contrase\u00F1a");
+		btnMostrarContrasea.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnMostrarContrasea.setForeground(Color.WHITE);
-		btnMostrarContrasea.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 20));
+		btnMostrarContrasea.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 10));
 		btnMostrarContrasea.setBackground(new Color(255, 140, 0));
-		btnMostrarContrasea.setBounds(139, 501, 242, 50);
+		btnMostrarContrasea.setBounds(313, 351, 133, 33);
+		btnMostrarContrasea.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent arg0) {
+			btnMostrarContrasea.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 50));
+			}
+			public void mouseExited(MouseEvent e) {
+			btnMostrarContrasea.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 40));
+			}
+		});
 		getContentPane().add(btnMostrarContrasea);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -106,6 +128,14 @@ public class V_registrarse extends JFrame {
 		btnSalir.setBackground(new Color(255, 228, 196));
 		btnSalir.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 40));
 		btnSalir.setBounds(1070, 732, 133, 41);
+		btnSalir.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent arg0) {
+			btnSalir.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 50));
+			}
+			public void mouseExited(MouseEvent e) {
+			btnSalir.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 40));
+			}
+		});
 		getContentPane().add(btnSalir);
 		
 		JLabel label = new JLabel("");
