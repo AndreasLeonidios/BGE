@@ -1,44 +1,70 @@
 package visualizacion;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
-public class V_inicio {
+import base_de_datos.Sonido;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.*;
+
+public class V_inicio extends Thread{
 
 	private JFrame frame;
 	public Icon fondo;
 	private JTextField textField;
 	V_menu menu = new V_menu();
 	private JPasswordField passwordField;
-	public static void main(String[] args) {
+	
+	
+	public void a() {
+		frame.setVisible(true);
+	}
+	
+	
+	
+	
+	public static void main(String[] args) throws IOException {
+		
+		Sonido sonido = new Sonido();
+
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					V_inicio window = new V_inicio();
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		sonido.start();
+		
 	}
-	public V_inicio() {
+	public V_inicio() throws IOException{
 		initialize();
+		run();
+	
 	}
 
-	private void initialize() {
+	private void initialize() throws IOException {
 		
 		frame = new JFrame();
 		frame.setBounds(0,0,2000,2000);
@@ -46,6 +72,7 @@ public class V_inicio {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
 		
 		
 		
@@ -116,5 +143,13 @@ public class V_inicio {
 		lblNewLabel.setFont(new Font("Gill Sans MT Ext Condensed Bold", Font.BOLD | Font.ITALIC, 99));
 		lblNewLabel.setIcon(new ImageIcon("fondo.gif"));
 		frame.getContentPane().add(lblNewLabel);
+		
+		
 	}
+
+
+
+
+
+	
 }
