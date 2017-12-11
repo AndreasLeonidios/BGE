@@ -10,8 +10,8 @@ public class main {
 
 		Logica l = new Logica();
 		
-	l.anyadirUsuarios("andreasleon", "francisco");
-	l.eliminarUsuario("andreasleon");
+		l.anyadirUsuarios("andreasleon", "francisco");
+		l.eliminarUsuario("andreasleon");
 
 		
 	}

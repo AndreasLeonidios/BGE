@@ -20,7 +20,7 @@ public class Logica {
 		}
 	    try {
   
-			connection = DriverManager.getConnection("jdbc:sqlite: BD");
+			connection = DriverManager.getConnection("jdbc:sqlite:BD");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,6 +30,8 @@ public class Logica {
 	}
 	
 
+	
+	
 	public void anyadirUsuarios(String nombre, String contrasenya) throws SQLException{
 			
 		if (nombre.length() > 20) {
@@ -79,7 +81,7 @@ public class Logica {
 		ResultSet rs = statement.executeQuery("select nombre from Usuarios");
 		 while(rs.next())
 	      {
-	        System.out.println(rs.getString("nombre"));
+	        System.out.println(rs.getInt(1));
 	      }
 	      
 	}

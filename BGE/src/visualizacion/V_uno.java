@@ -84,7 +84,7 @@ public class V_uno extends JFrame{
 		l6.setBounds(464, 0, 174, 71);
 		getContentPane().add(l6);
 		
-		l7.setBounds(649, 44, 120, 118);
+		l7.setBounds(682, 81, 87, 81);
 		getContentPane().add(l7);
 		
 		añadirA(lblJugador.getX(),lblJugador.getY());
@@ -102,8 +102,8 @@ public class V_uno extends JFrame{
             public void keyPressed(KeyEvent e){
                 if(e.getKeyCode()==KeyEvent.VK_UP){
                 	añadirA(lblJugador.getX(),lblJugador.getY());
-                	if(d==1) {
-                		y=y-10;
+                	if(comprobarChoque()==false) {
+                		y=y-1;
                     	lblJugador.setBounds(x, y, 32, 32);
                 	}
                 	
@@ -111,8 +111,8 @@ public class V_uno extends JFrame{
                 if(e.getKeyCode()==KeyEvent.VK_DOWN){
                 	añadirA(lblJugador.getX(),lblJugador.getY());
 
-                	if(u==1) {
-                		y=y+10;
+                	if(comprobarChoque()==false) {
+                		y=y+1;
                     	lblJugador.setBounds(x, y, 32, 32);
                 	}
                 	
@@ -120,8 +120,8 @@ public class V_uno extends JFrame{
                 if(e.getKeyCode()==KeyEvent.VK_RIGHT){
                 	añadirA(lblJugador.getX(),lblJugador.getY());
 
-                	if(l==1) {
-                		x=x+10;
+                	if(comprobarChoque()==false) {
+                		x=x+1;
                 		lblJugador.setBounds(x, y, 32, 32);
                 	}
                 	
@@ -130,8 +130,8 @@ public class V_uno extends JFrame{
                 	
                 	añadirA(lblJugador.getX(),lblJugador.getY());
 
-                	if(r==1) {
-                	x=x-10;
+                	if(comprobarChoque()==false) {
+                	x=x-1;
                 	lblJugador.setBounds(x, y, 32, 32);
                 	}
                 }
