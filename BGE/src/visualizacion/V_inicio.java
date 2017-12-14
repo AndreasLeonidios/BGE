@@ -69,7 +69,7 @@ public class V_inicio extends Thread{
 		frame = new JFrame();
 		frame.setBounds(0,0,2000,2000);
 	    frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+	    frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -136,6 +136,16 @@ public class V_inicio extends Thread{
 		lblBge.setForeground(new Color(255, 165, 0));
 		lblBge.setFont(new Font("Wide Latin", Font.BOLD | Font.ITALIC, 99));
 		frame.getContentPane().add(lblBge);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+		btnSalir.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 30));
+		btnSalir.setBounds(1136, 681, 114, 36);
+		frame.getContentPane().add(btnSalir);
 	
 		
 		JLabel lblNewLabel = new JLabel();
@@ -146,10 +156,4 @@ public class V_inicio extends Thread{
 		
 		
 	}
-
-
-
-
-
-	
 }

@@ -75,16 +75,7 @@ public class Logica {
 		
 	}
 	
-	public void mostrarUsuarios() throws SQLException{
-		 
-		statement = initBD().createStatement();
-		ResultSet rs = statement.executeQuery("select nombre from Usuarios");
-		 while(rs.next())
-	      {
-	        System.out.println(rs.getInt(1));
-	      }
-	      
-	}
+
 	
 	public void anyadirHeroe(String nombreUsuario, String nombreHeroe, int puntuacion, int velocidad, int ataque, int vida) throws SQLException{
 		
