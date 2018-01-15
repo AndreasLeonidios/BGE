@@ -20,15 +20,19 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
+import base_de_datos.Sonido;
+
 public class V_registrarse extends JFrame {
 	private final JButton btnJugar = new JButton("Jugar con este usuario");
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	Sonido sonido;
 
 	
-	public V_registrarse() {
+	public V_registrarse(Sonido sonido) {
 	
+		this.sonido = sonido;
 		JFrame frame = this;
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	    frame.setUndecorated(true);
@@ -138,6 +142,7 @@ public class V_registrarse extends JFrame {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
+				sonido.stop();
 			}
 		});
 		btnSalir.setBackground(new Color(255, 228, 196));

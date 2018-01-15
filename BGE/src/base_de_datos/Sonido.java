@@ -9,9 +9,13 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
 public class Sonido extends Thread{
+	
+	public Sonido() {
+		
+	}
 
-	public  void run() {
-		File file = new File("Naruto Battle Theme.mp3");
+	public void run() {
+		File file = new File("Ikimono Gakari - Hotaru No Hikari OST Naruto Lyrics.mp3");
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream(file);
@@ -29,5 +33,7 @@ public class Sonido extends Thread{
 	
 		}
 	}
+	
+	
 	
 }

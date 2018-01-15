@@ -25,10 +25,10 @@ import javazoom.jl.player.*;
 
 public class V_inicio extends Thread {
 
+	Sonido sonido = new Sonido();
 	private JFrame frame;
 	public Icon fondo;
 	private JTextField textField;
-	V_menu menu = new V_menu();
 	private JPasswordField passwordField;
 
 	public static void main(String[] args) throws IOException {
@@ -46,11 +46,11 @@ public class V_inicio extends Thread {
 				}
 			}
 		});
-		sonido.start();
 
 	}
 
 	public V_inicio() throws IOException {
+		sonido.start();
 		initialize();
 		run();
 
@@ -89,7 +89,7 @@ public class V_inicio extends Thread {
 		btnRegistrarse.setBounds(406, 568, 248, 43);
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				V_registrarse n = new V_registrarse();
+				V_registrarse n = new V_registrarse(sonido);
 				n.setVisible(true);
 				frame.dispose();
 
@@ -104,8 +104,9 @@ public class V_inicio extends Thread {
 		btnIniciar.setBounds(675, 568, 248, 43);
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				V_menu n = new V_menu();
+				V_menu n = new V_menu(sonido);
 				n.setVisible(true);
+
 				frame.dispose();
 			}
 		});
@@ -129,7 +130,9 @@ public class V_inicio extends Thread {
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.stop();
 				frame.dispose();
+
 			}
 		});
 		btnSalir.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 30));

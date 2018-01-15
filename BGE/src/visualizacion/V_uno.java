@@ -3,6 +3,9 @@ package visualizacion;
 import java.awt.Rectangle;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import base_de_datos.Sonido;
+
 import javax.swing.ImageIcon;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,12 +15,13 @@ import java.awt.Color;
 public class V_uno extends JFrame implements Runnable {
 
 	private JFrame frame;
+	Sonido sonido;
 	private int x1 = 346;
 	private int y1 = 102;
 	private int x2 = 344;
 	private int y2 = 731;
 
-	public boolean up = false;
+	public boolean up;
 	private boolean down = false;
 	private boolean left = false;
 	private boolean right = false;
@@ -71,12 +75,15 @@ public class V_uno extends JFrame implements Runnable {
 	private final JLabel l35 = new JLabel("");
 	private final JLabel l36 = new JLabel("");
 	private final JLabel l37 = new JLabel("");
+	
+	private final JLabel labelKunai = new JLabel("");
 
-	public V_uno() {
+	public V_uno(Sonido sonido) {
+		this.sonido = sonido;
 		initialize();
 		añadirPanel();
-		q = new Thread(this, "n1");
-		q.start();
+		q = new Thread(this);
+
 	}
 
 	private void initialize() {
@@ -207,6 +214,12 @@ public class V_uno extends JFrame implements Runnable {
 		l37.setBounds(330, 166, 87, 54);
 
 		getContentPane().add(l37);
+		labelKunai.setIcon(new ImageIcon("C:\\Users\\Andreas Le\u00F3n\\Downloads\\20.jpg"));
+		
+		
+		labelKunai.setBounds(420, 142, 20, 20);
+		getContentPane().add(labelKunai);
+		labelKunai.setVisible(false);
 
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setIcon(new ImageIcon("C:\\Users\\Andreas Le\u00F3n\\Downloads\\mapa1vs1FINAL.png"));
@@ -224,84 +237,165 @@ public class V_uno extends JFrame implements Runnable {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
 
-					up = true;
-					System.out.println(1);
-
-				} else {
-					up = false;
+					if (q.isAlive() == false) {
+						up = true;
+						q.start();
+						repaint();
+						
+					} else {
+						up = true;
+						q.start();
+						repaint();
+					}
 				}
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 
-					down = true;
 					comprobarChoqueDOWN1();
-				} else {
-					down = false;
+					// down = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 
-					right = true;
+					
 					comprobarChoqueRIGHT1();
-				} else {
-					right = false;
+					// right = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
-					left = true;
 					comprobarChoqueLEFT1();
-				} else {
-					left = false;
+					// left = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_W) {
 
 					w = true;
-					comprobarChoqueUP2();
-
-				} else {
-					w = false;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_S) {
 
 					s = true;
-					comprobarChoqueDOWN2();
-				} else {
-					s = false;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_D) {
 
 					d = true;
-					comprobarChoqueRIGHT2();
-				} else {
-					d = false;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_A) {
 
 					a = true;
-					comprobarChoqueLEFT2();
-				} else {
-					a = false;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_B) {
 
+					try {
+						ataqueUP1();
+					} catch (InterruptedException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					try {
+						ataqueUP1();
+					} catch (InterruptedException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+					repaint();
+					
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					try {
+						ataqueUP1();
+					} catch (InterruptedException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					repaint();
+					
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					try {
+						ataqueUP1();
+					} catch (InterruptedException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+					
+					
+					
 					b = true;
-					comprobarChoqueLEFT2();
-				} else {
-					b = false;
+
 				}
 				if (e.getKeyCode() == KeyEvent.VK_P) {
 
 					p = true;
-					comprobarChoqueLEFT2();
-				} else {
-					p = false;
+
 				}
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 
 					frame.dispose();
+					sonido.stop();
+
 				}
 			}
 
 			public void keyReleased(KeyEvent e) {
 
+				if (e.getKeyCode() == KeyEvent.VK_UP) {
+					up = false;
+					repaint();
+					
+
+				}
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+
+					down = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+
+					right = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+
+					left = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_W) {
+
+					w = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_S) {
+
+					s = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_D) {
+
+					d = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_A) {
+
+					a = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_B) {
+
+					b = false;
+
+				}
+				if (e.getKeyCode() == KeyEvent.VK_P) {
+
+					p = false;
+
+				}
 			}
 		});
 
@@ -347,6 +441,37 @@ public class V_uno extends JFrame implements Runnable {
 		listaPanel.add(l37);
 
 	}
+	
+	public void ataqueUP1() throws InterruptedException {
+		
+		boolean choca = false;
+		labelKunai.setVisible(true);
+		
+		for (int i = 0; i < listaPanel.size(); i++) {
+
+			Rectangle result = new Rectangle(x1, y1, 20, 20);
+			int xP = listaPanel.get(i).getX();
+			int yP = listaPanel.get(i).getY();
+			int hP = listaPanel.get(i).getHeight();
+			int wP = listaPanel.get(i).getWidth();
+
+			if (result.intersects(xP, yP, wP, hP + 5) == true) {
+				y1 = yP + hP;
+				labelKunai.setBounds(x1, y1, 20, 20);
+				choca = true;
+				i = 1000;
+
+			}
+
+		}
+		if (choca == false) {
+			
+				y1 = y1 -5;
+				labelKunai.setBounds(x1, y1, 32, 32);
+			
+		}
+		
+	}
 
 	public void comprobarChoqueUP1() {
 
@@ -376,6 +501,8 @@ public class V_uno extends JFrame implements Runnable {
 		}
 		repaint();
 	}
+	
+	
 
 	public void comprobarChoqueDOWN1() {
 
@@ -587,13 +714,12 @@ public class V_uno extends JFrame implements Runnable {
 	}
 
 	public void run() {
-		System.out.println(2);
-		if (up == true) {
-			System.out.println(3);
-			for (int i = 0; i < 20; i++) {
-				System.out.println(i * 2 + 1);
+
+		for (int i = 0; i < 1;) {
+			for (; up == true;) {
+				comprobarChoqueUP2();
 				try {
-					Thread.sleep(500);
+					Thread.sleep(50);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -601,5 +727,4 @@ public class V_uno extends JFrame implements Runnable {
 			}
 		}
 	}
-
 }

@@ -3,6 +3,9 @@ package visualizacion;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import base_de_datos.Sonido;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,8 +19,10 @@ import java.awt.event.MouseEvent;
 public class V_menu extends JFrame {
 
 	private JPanel contentPane;
+	Sonido sonido;
 
-	public V_menu() {
+	public V_menu(Sonido sonido) {
+		this.sonido = sonido;
 		JFrame frame =this;
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	    frame.setUndecorated(true);
@@ -40,6 +45,7 @@ public class V_menu extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				sonido.stop();
 			}
 		});
 		button.setForeground(new Color(255, 255, 255));
@@ -74,7 +80,7 @@ public class V_menu extends JFrame {
 		JButton btnVs = new JButton("1 vs 1 offline");
 		btnVs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				V_uno n = new V_uno();
+				V_uno n = new V_uno(sonido);
 				n.setVisible(true);
 				dispose();
 			}
