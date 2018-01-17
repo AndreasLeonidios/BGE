@@ -21,6 +21,7 @@ public class V_uno extends JFrame implements Runnable {
 	private int x2 = 344;
 	private int y2 = 731;
 
+	public boolean juegoEnMarcha = true;
 	public boolean up;
 	private boolean down = false;
 	private boolean left = false;
@@ -32,7 +33,7 @@ public class V_uno extends JFrame implements Runnable {
 	private boolean b = false;
 	private boolean p = false;
 
-	private Thread q;
+	private Thread hilo1;
 
 	private final JLabel lblJugador1 = new JLabel("");
 	private final JLabel lblJugador2 = new JLabel("");
@@ -75,14 +76,19 @@ public class V_uno extends JFrame implements Runnable {
 	private final JLabel l35 = new JLabel("");
 	private final JLabel l36 = new JLabel("");
 	private final JLabel l37 = new JLabel("");
-	
+
 	private final JLabel labelKunai = new JLabel("");
 
 	public V_uno(Sonido sonido) {
 		this.sonido = sonido;
 		initialize();
 		añadirPanel();
-		q = new Thread(this);
+
+		hilo1 = new Thread(this);
+		Hilo2 hilo2 = new Hilo2();
+		hilo2.start();
+		hilo1.start();
+		
 
 	}
 
@@ -215,8 +221,7 @@ public class V_uno extends JFrame implements Runnable {
 
 		getContentPane().add(l37);
 		labelKunai.setIcon(new ImageIcon("C:\\Users\\Andreas Le\u00F3n\\Downloads\\20.jpg"));
-		
-		
+
 		labelKunai.setBounds(420, 142, 20, 20);
 		getContentPane().add(labelKunai);
 		labelKunai.setVisible(false);
@@ -237,32 +242,19 @@ public class V_uno extends JFrame implements Runnable {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
 
-					if (q.isAlive() == false) {
-						up = true;
-						q.start();
-						repaint();
-						
-					} else {
-						up = true;
-						q.start();
-						repaint();
-					}
+					up = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 
-					comprobarChoqueDOWN1();
-					// down = true;
+					down = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 
-					
-					comprobarChoqueRIGHT1();
-					// right = true;
+					right = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
-					comprobarChoqueLEFT1();
-					// left = true;
+					left = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_W) {
 
@@ -282,58 +274,6 @@ public class V_uno extends JFrame implements Runnable {
 				}
 				if (e.getKeyCode() == KeyEvent.VK_B) {
 
-					try {
-						ataqueUP1();
-					} catch (InterruptedException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-					
-					try {
-						Thread.sleep(100);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					try {
-						ataqueUP1();
-					} catch (InterruptedException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-					
-					repaint();
-					
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					try {
-						ataqueUP1();
-					} catch (InterruptedException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-					repaint();
-					
-					try {
-						Thread.sleep(100);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					try {
-						ataqueUP1();
-					} catch (InterruptedException e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-					
-					
-					
-					
 					b = true;
 
 				}
@@ -355,7 +295,6 @@ public class V_uno extends JFrame implements Runnable {
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
 					up = false;
 					repaint();
-					
 
 				}
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -441,12 +380,12 @@ public class V_uno extends JFrame implements Runnable {
 		listaPanel.add(l37);
 
 	}
-	
+
 	public void ataqueUP1() throws InterruptedException {
-		
+
 		boolean choca = false;
 		labelKunai.setVisible(true);
-		
+
 		for (int i = 0; i < listaPanel.size(); i++) {
 
 			Rectangle result = new Rectangle(x1, y1, 20, 20);
@@ -465,12 +404,12 @@ public class V_uno extends JFrame implements Runnable {
 
 		}
 		if (choca == false) {
-			
-				y1 = y1 -5;
-				labelKunai.setBounds(x1, y1, 32, 32);
-			
+
+			y1 = y1 - 5;
+			labelKunai.setBounds(x1, y1, 32, 32);
+
 		}
-		
+
 	}
 
 	public void comprobarChoqueUP1() {
@@ -501,8 +440,6 @@ public class V_uno extends JFrame implements Runnable {
 		}
 		repaint();
 	}
-	
-	
 
 	public void comprobarChoqueDOWN1() {
 
@@ -713,18 +650,57 @@ public class V_uno extends JFrame implements Runnable {
 		repaint();
 	}
 
+	public boolean devuelveW() {
+		return w;
+	}
 	public void run() {
 
-		for (int i = 0; i < 1;) {
-			for (; up == true;) {
-				comprobarChoqueUP2();
-				try {
-					Thread.sleep(50);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		while (juegoEnMarcha == true) {
+			if (up == true) {
+				comprobarChoqueUP1();
+
+			} else if (down == true) {
+				comprobarChoqueDOWN1();
+			} else if (right == true) {
+				comprobarChoqueRIGHT1();
+			} else if (left == true) {
+				comprobarChoqueLEFT1();
+			}
+
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
+
+	}
+
+
+class Hilo2 extends Thread {
+	public void run(int i) {
+
+		V_uno u = new V_uno(sonido);
+		while (juegoEnMarcha == true) {
+			if (u.devuelveW() == true) {
+				comprobarChoqueUP2();
+
+			} else if (u.down == true) {
+				comprobarChoqueDOWN1();
+			} else if (right == true) {
+				comprobarChoqueRIGHT1();
+			} else if (left == true) {
+				comprobarChoqueLEFT1();
+			}
+
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	}
 }
