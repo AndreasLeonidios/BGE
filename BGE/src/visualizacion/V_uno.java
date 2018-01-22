@@ -34,6 +34,7 @@ public class V_uno extends JFrame implements Runnable {
 	private boolean p = false;
 
 	private Thread hilo1;
+	private Thread hilo2;
 
 	private final JLabel lblJugador1 = new JLabel("");
 	private final JLabel lblJugador2 = new JLabel("");
@@ -85,11 +86,12 @@ public class V_uno extends JFrame implements Runnable {
 		añadirPanel();
 
 		hilo1 = new Thread(this);
-		Thread hilo2 = new Thread();
-		hilo2.start();
+		
 		hilo1.start();
 		
-
+//
+//		hilo
+//		hilo2.start();
 	}
 
 	private void initialize() {
@@ -100,13 +102,13 @@ public class V_uno extends JFrame implements Runnable {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		lblJugador1.setIcon(new ImageIcon("C:\\Users\\Andreas Le\u00F3n\\Downloads\\corea.jpg"));
+		lblJugador1.setIcon(new ImageIcon("corea.jpg"));
 		lblJugador1.setForeground(Color.RED);
 		lblJugador1.setBackground(Color.ORANGE);
 		lblJugador1.setBounds(352, 106, 32, 32);
 		getContentPane().add(lblJugador1);
 
-		lblJugador2.setIcon(new ImageIcon("C:\\Users\\Andreas Le\u00F3n\\Desktop\\32 2.jpg"));
+		lblJugador2.setIcon(new ImageIcon("32 2.jpg"));
 		lblJugador2.setBounds(344, 731, 32, 32);
 		getContentPane().add(lblJugador2);
 
@@ -227,7 +229,7 @@ public class V_uno extends JFrame implements Runnable {
 		labelKunai.setVisible(false);
 
 		JLabel labelFondo = new JLabel("");
-		labelFondo.setIcon(new ImageIcon("C:\\Users\\Andreas Le\u00F3n\\Downloads\\mapa1vs1FINAL.png"));
+		labelFondo.setIcon(new ImageIcon("mapa1vs1FINAL.png"));
 
 		labelFondo.setBounds(290, 0, 700, 800);
 		frame.getContentPane().add(labelFondo);
