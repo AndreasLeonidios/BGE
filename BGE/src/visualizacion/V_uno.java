@@ -85,7 +85,7 @@ public class V_uno extends JFrame implements Runnable {
 		añadirPanel();
 
 		hilo1 = new Thread(this);
-		Hilo2 hilo2 = new Hilo2();
+		Thread hilo2 = new Thread();
 		hilo2.start();
 		hilo1.start();
 		
@@ -678,15 +678,13 @@ public class V_uno extends JFrame implements Runnable {
 	}
 
 
-class Hilo2 extends Thread {
 	public void run(int i) {
 
-		V_uno u = new V_uno(sonido);
 		while (juegoEnMarcha == true) {
-			if (u.devuelveW() == true) {
+			if (w == true) {
 				comprobarChoqueUP2();
 
-			} else if (u.down == true) {
+			} else if (down == true) {
 				comprobarChoqueDOWN1();
 			} else if (right == true) {
 				comprobarChoqueRIGHT1();
@@ -702,5 +700,5 @@ class Hilo2 extends Thread {
 			}
 		}
 	}
-	}
+	
 }
