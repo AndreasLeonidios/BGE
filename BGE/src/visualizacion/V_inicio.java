@@ -9,6 +9,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -19,6 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import base_de_datos.BaseDeDatos;
 import base_de_datos.Sonido;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.*;
@@ -29,7 +31,12 @@ public class V_inicio extends Thread {
 	private JFrame frame;
 	public Icon fondo;
 	private JTextField textField;
-	private JPasswordField passwordField;
+	BaseDeDatos o = new BaseDeDatos();
+	private JTextField textField_1;
+	
+	public void V_inicio(){
+		
+	}
 
 	public static void main(String[] args) throws IOException {
 
@@ -53,6 +60,7 @@ public class V_inicio extends Thread {
 		sonido.start();
 		initialize();
 		run();
+		
 
 	}
 
@@ -77,6 +85,13 @@ public class V_inicio extends Thread {
 		lblContrasea.setForeground(Color.WHITE);
 		lblContrasea.setFont(new Font("Magneto", Font.BOLD | Font.ITALIC, 40));
 		frame.getContentPane().add(lblContrasea);
+		
+		textField_1 = new JTextField();
+		textField_1.setForeground(Color.BLACK);
+		textField_1.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 40));
+		textField_1.setColumns(10);
+		textField_1.setBounds(624, 468, 330, 43);
+		frame.getContentPane().add(textField_1);
 
 		textField = new JTextField();
 		textField.setBounds(624, 398, 330, 43);
@@ -104,22 +119,28 @@ public class V_inicio extends Thread {
 		btnIniciar.setBounds(675, 568, 248, 43);
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				V_menu n = new V_menu(sonido);
-				n.setVisible(true);
+					try {
+						if(o.mostrarUsuarios().contains(textField.getText())) {
+							if(o.mostrarContrasenyas().contains(textField_1.getText())) {
+								V_menu n = new V_menu(sonido);
+								n.setVisible(true);
 
-				frame.dispose();
+								frame.dispose();
+							}
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
+					
+				
 			}
 		});
 		btnIniciar.setForeground(Color.WHITE);
 		btnIniciar.setFont(new Font("Magneto", Font.BOLD | Font.ITALIC, 40));
 		btnIniciar.setBackground(Color.BLACK);
 		frame.getContentPane().add(btnIniciar);
-
-		passwordField = new JPasswordField();
-		passwordField.setForeground(Color.BLACK);
-		passwordField.setFont(new Font("Microsoft JhengHei", Font.BOLD | Font.ITALIC, 40));
-		passwordField.setBounds(624, 474, 330, 43);
-		frame.getContentPane().add(passwordField);
 
 		JLabel lblBge = new JLabel("Saik\u014D no g\u0113mu");
 		lblBge.setBounds(376, 122, 721, 181);

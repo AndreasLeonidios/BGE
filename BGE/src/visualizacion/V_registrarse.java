@@ -17,9 +17,11 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
+import base_de_datos.BaseDeDatos;
 import base_de_datos.Sonido;
 
 public class V_registrarse extends JFrame {
@@ -29,6 +31,7 @@ public class V_registrarse extends JFrame {
 	private JTextField textField_2;
 	Sonido sonido;
 
+	BaseDeDatos o = new BaseDeDatos();
 	
 	public V_registrarse(Sonido sonido) {
 	
@@ -104,6 +107,26 @@ public class V_registrarse extends JFrame {
 		getContentPane().add(textField_2);
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			try {
+				o.crearTablas();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+				if(textField_1.getText().equals(textField_2.getText())) {
+				try {
+					o.anyadirUsuario(textField.getText(), textField_2.getText());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				}else {
+					System.out.println("Error");
+				}
+			}
+		});
 		btnRegistrarse.setForeground(Color.WHITE);
 		btnRegistrarse.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 40));
 		btnRegistrarse.setBackground(new Color(255, 140, 0));

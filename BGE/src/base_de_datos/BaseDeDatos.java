@@ -58,6 +58,18 @@ public class BaseDeDatos {
 		return lista;
 
 	}
+	
+	public String mostrarContrasenyas() throws SQLException {
+
+		String lista = "";
+		statement = initBD().createStatement();
+		ResultSet rs = statement.executeQuery("select contrasenya from Usuarios");
+		while (rs.next()) {
+			lista = lista + rs.getString(1) + " ";
+		}
+		return lista;
+
+	}
 
 	public String mostrarHeroes(String nombre) throws SQLException {
 

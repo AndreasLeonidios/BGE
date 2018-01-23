@@ -10,14 +10,23 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import base_de_datos.BaseDeDatos;
+import base_de_datos.Sonido;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class V_heroes extends JFrame{
 
 	private JPanel contentPane;
 	private JTextField textField;
+	Sonido sonido;
+	BaseDeDatos o = new BaseDeDatos();
 
-	public V_heroes() {
+	public V_heroes(Sonido sonido) {
+		sonido=this.sonido;
 		initialize();
 	}
 
@@ -42,6 +51,14 @@ public class V_heroes extends JFrame{
 		getContentPane().add(btnMostrarHeroes);
 		
 		JButton btnEliminarHeroes = new JButton("Eliminar Heroes");
+		btnEliminarHeroes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			
+			
+			
+			}
+		});
 		btnEliminarHeroes.setForeground(Color.WHITE);
 		btnEliminarHeroes.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 40));
 		btnEliminarHeroes.setContentAreaFilled(false);
@@ -54,6 +71,23 @@ public class V_heroes extends JFrame{
 		textField.setBounds(61, 245, 519, 506);
 		getContentPane().add(textField);
 		textField.setColumns(10);
+		
+		JButton btnMenuPrincipal = new JButton("Menu principal");
+		btnMenuPrincipal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				V_menu n = new V_menu(sonido);
+				n.setVisible(true);
+
+				dispose();
+			}
+		});
+		btnMenuPrincipal.setForeground(Color.WHITE);
+		btnMenuPrincipal.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 40));
+		btnMenuPrincipal.setContentAreaFilled(false);
+		btnMenuPrincipal.setBorderPainted(false);
+		btnMenuPrincipal.setBackground(new Color(255, 250, 250));
+		btnMenuPrincipal.setBounds(770, 608, 403, 79);
+		getContentPane().add(btnMenuPrincipal);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon("C:\\Users\\Andreas Le\u00F3n\\Downloads\\crearHeroe.png"));

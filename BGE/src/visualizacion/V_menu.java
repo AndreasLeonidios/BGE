@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class V_menu extends JFrame {
 
@@ -60,24 +61,7 @@ public class V_menu extends JFrame {
 		lblMenu.setBounds(146, 54, 476, 70);
 		contentPane.add(lblMenu);
 		
-		JButton btnJugarOnline = new JButton("Jugar online");
-		btnJugarOnline.addMouseListener(new MouseAdapter() {
-			public void mouseEntered(MouseEvent arg0) {
-			btnJugarOnline.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 45));
-			}
-			public void mouseExited(MouseEvent e) {
-			btnJugarOnline.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 40));
-			}
-		});
-		btnJugarOnline.setBackground(new Color(255, 250, 250));
-		btnJugarOnline.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 40));
-		btnJugarOnline.setBounds(196, 177, 330, 79);
-		btnJugarOnline.setContentAreaFilled(false);
-		btnJugarOnline.setBorderPainted(false);
-
-		contentPane.add(btnJugarOnline);
-		
-		JButton btnVs = new JButton("1 vs 1 offline");
+		JButton btnVs = new JButton("CogeKunai");
 		btnVs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				V_uno n = new V_uno(sonido);
@@ -101,6 +85,14 @@ public class V_menu extends JFrame {
 		contentPane.add(btnVs);
 		
 		JButton btnOpciones = new JButton("Opciones");
+		btnOpciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				V_opcion o = new V_opcion(sonido);
+				o.setVisible(true);
+				dispose();
+			
+			}
+		});
 		btnOpciones.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent arg0) {
 			btnOpciones.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 45));
@@ -127,7 +119,7 @@ public class V_menu extends JFrame {
 		});
 		btnHeroes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				V_heroes n = new V_heroes();
+				V_heroes n = new V_heroes(sonido);
 				n.setVisible(true);
 				dispose();
 			}
@@ -140,6 +132,14 @@ public class V_menu extends JFrame {
 		contentPane.add(btnHeroes);
 		
 		JButton btnCambiarUsuario = new JButton("Cambiar usuario");
+		btnCambiarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					
+					
+			
+			}
+		});
 		btnCambiarUsuario.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent arg0) {
 			btnCambiarUsuario.setFont(new Font("Lucida Bright", Font.BOLD | Font.ITALIC, 35));
