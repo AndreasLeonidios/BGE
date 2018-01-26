@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
@@ -15,7 +14,7 @@ public class Sonido extends Thread{
 	}
 
 	public void run() {
-		File file = new File("Ikimono Gakari - Hotaru No Hikari OST Naruto Lyrics.mp3");
+		File file = new File("Lets Be Cops   Soundtrack Dubstep.mp3");
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream(file);
