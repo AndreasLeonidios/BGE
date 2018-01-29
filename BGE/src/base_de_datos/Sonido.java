@@ -14,7 +14,7 @@ public class Sonido extends Thread{
 	}
 
 	public void run() {
-		File file = new File("Lets Be Cops   Soundtrack Dubstep.mp3");
+		File file = new File("Ikimono Gakari - Hotaru No Hikari OST Naruto Lyrics.mp3");
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream(file);
